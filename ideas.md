@@ -1,6 +1,9 @@
 # My Ideas
 
 ## Pending Analysis
+- [ ] claude card ppt
+- [ ] 菜谱及制作流程自动化生成
+- [ ] pdd自动化流程表单提取测试
 - [ ] 自动化研究追踪
 - [ ] 自动化项目管理（copilot）
 - [ ] 以及关于整个的devops流程探讨，云服务，云部署，运维，团队管理/agent

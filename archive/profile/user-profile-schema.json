@@ -1,0 +1,331 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Profile Schema",
+  "description": "个人AI助理的用户画像数据结构",
+  "type": "object",
+  "properties": {
+    "userId": {
+      "type": "string",
+      "description": "用户唯一标识符"
+    },
+    "profileVersion": {
+      "type": "string",
+      "description": "画像版本号",
+      "default": "1.0"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最后更新时间"
+    },
+    "staticPreferences": {
+      "type": "object",
+      "description": "从问卷收集的显式偏好",
+      "properties": {
+        "workingStyle": {
+          "type": "object",
+          "properties": {
+            "workRhythm": {
+              "type": "string",
+              "enum": ["deep_focus", "multi_task", "mixed"],
+              "description": "工作节奏偏好"
+            },
+            "decisionStyle": {
+              "type": "string", 
+              "enum": ["intuitive", "analytical", "collaborative"],
+              "description": "决策风格"
+            },
+            "riskTolerance": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "风险承受度评分"
+            }
+          }
+        },
+        "communication": {
+          "type": "object",
+          "properties": {
+            "verbosity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "回应详细程度偏好"
+            },
+            "proactivity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "AI主动性期望"
+            },
+            "communicationStyle": {
+              "type": "string",
+              "enum": ["direct", "detailed", "friendly"],
+              "description": "沟通风格偏好"
+            }
+          }
+        },
+        "technicalPreferences": {
+          "type": "object",
+          "properties": {
+            "primaryTechStack": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "主要技术栈"
+            },
+            "toolChainPreference": {
+              "type": "string",
+              "enum": ["auto_select", "explain_choice", "user_specify"],
+              "description": "工具编排偏好"
+            },
+            "codeReviewFocus": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["logic_bugs", "performance", "readability", "security", "architecture"]
+              },
+              "description": "代码审查关注点"
+            }
+          }
+        },
+        "cognitivePreferences": {
+          "type": "object",
+          "properties": {
+            "complexProblemHandling": {
+              "type": "string",
+              "enum": ["complete_solution", "step_by_step", "multiple_options"],
+              "description": "复杂问题处理偏好"
+            },
+            "uncertaintyHandling": {
+              "type": "string",
+              "enum": ["risk_labeling", "conservative", "bold_attempt"],
+              "description": "不确定性处理方式"
+            },
+            "learningStyle": {
+              "type": "string",
+              "enum": ["project_based", "theory_first", "example_based"],
+              "description": "学习方式偏好"
+            }
+          }
+        },
+        "scenarios": {
+          "type": "object",
+          "properties": {
+            "topCollaborationScenarios": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 3,
+              "description": "最希望AI帮助的场景"
+            },
+            "mainPainPoints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "主要痛点"
+            },
+            "expectedValue": {
+              "type": "string",
+              "description": "期望获得的能力提升"
+            }
+          }
+        }
+      },
+      "required": ["workingStyle", "communication", "technicalPreferences"]
+    },
+    "behavioralMetrics": {
+      "type": "object",
+      "description": "从使用行为中观察到的真实偏好",
+      "properties": {
+        "toolUsage": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "使用次数"
+                },
+                "successRate": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "成功率"
+                },
+                "averageRating": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 5,
+                  "description": "平均评分"
+                }
+              }
+            }
+          },
+          "description": "各工具使用统计"
+        },
+        "interactionPatterns": {
+          "type": "object",
+          "properties": {
+            "repromptRate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "需要澄清的对话比例"
+            },
+            "solutionAcceptanceRate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "方案采纳率"
+            },
+            "averageSessionLength": {
+              "type": "number",
+              "description": "平均会话时长(分钟)"
+            },
+            "preferredResponseLength": {
+              "type": "integer",
+              "description": "实际偏好的回应长度(字符数)"
+            }
+          }
+        },
+        "temporalPatterns": {
+          "type": "object",
+          "properties": {
+            "activeHours": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 23
+              },
+              "description": "活跃时段"
+            },
+            "peakProductivityHours": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 23
+              },
+              "description": "高效时段"
+            }
+          }
+        }
+      }
+    },
+    "feedbackHistory": {
+      "type": "array",
+      "description": "用户主动提供的反馈记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "反馈时间"
+          },
+          "interactionId": {
+            "type": "string",
+            "description": "关联的交互ID"
+          },
+          "feedbackType": {
+            "type": "string",
+            "enum": ["positive", "negative", "suggestion", "correction"],
+            "description": "反馈类型"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["accuracy", "relevance", "verbosity", "tool_choice", "timing", "other"],
+            "description": "反馈分类"
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "description": "评分"
+          },
+          "comment": {
+            "type": "string",
+            "description": "详细反馈内容"
+          },
+          "context": {
+            "type": "object",
+            "description": "反馈上下文信息",
+            "properties": {
+              "taskType": {
+                "type": "string",
+                "description": "任务类型"
+              },
+              "toolsUsed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "使用的工具"
+              }
+            }
+          }
+        },
+        "required": ["timestamp", "feedbackType", "rating"]
+      }
+    },
+    "derivedInsights": {
+      "type": "object",
+      "description": "从数据分析中得出的洞察",
+      "properties": {
+        "personalityTraits": {
+          "type": "object",
+          "properties": {
+            "detailOriented": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "细节导向程度"
+            },
+            "experimentalTendency": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "实验倾向"
+            },
+            "collaborationStyle": {
+              "type": "string",
+              "enum": ["independent", "consultative", "collaborative"],
+              "description": "协作风格"
+            }
+          }
+        },
+        "adaptationRecommendations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aspect": {
+                "type": "string",
+                "description": "需要调整的方面"
+              },
+              "suggestion": {
+                "type": "string",
+                "description": "调整建议"
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "建议置信度"
+              }
+            }
+          },
+          "description": "个性化调整建议"
+        }
+      }
+    }
+  },
+  "required": ["userId", "profileVersion", "staticPreferences"]
+}

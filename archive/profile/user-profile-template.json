@@ -1,0 +1,114 @@
+{
+  "userId": "user-yuanquan",
+  "profileVersion": "1.0",
+  "lastUpdated": "2025-06-25T14:00:00Z",
+  "staticPreferences": {
+    "workingStyle": {
+      "workRhythm": "mixed",
+      "decisionStyle": "analytical", 
+      "riskTolerance": 4
+    },
+    "communication": {
+      "verbosity": 4,
+      "proactivity": 3,
+      "communicationStyle": "direct"
+    },
+    "technicalPreferences": {
+      "primaryTechStack": ["python", "javascript", "git", "claude-code"],
+      "toolChainPreference": "explain_choice",
+      "codeReviewFocus": ["logic_bugs", "performance", "architecture"]
+    },
+    "cognitivePreferences": {
+      "complexProblemHandling": "step_by_step",
+      "uncertaintyHandling": "risk_labeling",
+      "learningStyle": "project_based"
+    },
+    "scenarios": {
+      "topCollaborationScenarios": [
+        "技术方案分析和决策",
+        "代码审查和优化建议", 
+        "工作流程自动化设计"
+      ],
+      "mainPainPoints": [
+        "信息过载和筛选困难",
+        "重复性任务耗时",
+        "技术选择的决策困难"
+      ],
+      "expectedValue": "提升决策质量和工作效率，减少认知负荷"
+    }
+  },
+  "behavioralMetrics": {
+    "toolUsage": {
+      "webSearch": {
+        "count": 45,
+        "successRate": 0.8,
+        "averageRating": 4.2
+      },
+      "zen_thinkdeep": {
+        "count": 120,
+        "successRate": 0.95,
+        "averageRating": 4.7
+      },
+      "zen_codereview": {
+        "count": 30,
+        "successRate": 0.9,
+        "averageRating": 4.5
+      }
+    },
+    "interactionPatterns": {
+      "repromptRate": 0.15,
+      "solutionAcceptanceRate": 0.85,
+      "averageSessionLength": 25.5,
+      "preferredResponseLength": 800
+    },
+    "temporalPatterns": {
+      "activeHours": [9, 10, 11, 14, 15, 16, 20, 21],
+      "peakProductivityHours": [9, 10, 14, 15]
+    }
+  },
+  "feedbackHistory": [
+    {
+      "timestamp": "2025-06-25T10:30:00Z",
+      "interactionId": "session-001",
+      "feedbackType": "positive",
+      "category": "accuracy",
+      "rating": 5,
+      "comment": "分析非常全面，帮助我快速做出了技术选择决策",
+      "context": {
+        "taskType": "technical_analysis",
+        "toolsUsed": ["zen_thinkdeep", "webSearch"]
+      }
+    },
+    {
+      "timestamp": "2025-06-24T16:20:00Z",
+      "interactionId": "session-002", 
+      "feedbackType": "suggestion",
+      "category": "verbosity",
+      "rating": 4,
+      "comment": "回答很好，但可以更简洁一些",
+      "context": {
+        "taskType": "code_review",
+        "toolsUsed": ["zen_codereview"]
+      }
+    }
+  ],
+  "derivedInsights": {
+    "personalityTraits": {
+      "detailOriented": 0.8,
+      "experimentalTendency": 0.7,
+      "collaborationStyle": "consultative"
+    },
+    "adaptationRecommendations": [
+      {
+        "aspect": "response_length",
+        "suggestion": "对于代码审查类任务，提供更简洁的总结",
+        "confidence": 0.85
+      },
+      {
+        "aspect": "tool_chaining",
+        "suggestion": "更多使用zen_thinkdeep进行深度分析",
+        "confidence": 0.9
+      }
+    ]
+  }
+}
